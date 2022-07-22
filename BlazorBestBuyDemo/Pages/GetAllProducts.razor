@@ -1,0 +1,44 @@
+﻿@page "/GetAllProducts"
+@using BlazorBestBuyDemo.Data
+@using BlazorBestBuyDemo.Services
+@inject IProductService productService
+
+
+<div>
+    <h1 class="display-1 text-center m-5">Get All Products</h1>
+
+    <table class="table">
+        <tr>
+            <th>ProductID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>CategoryID</th>
+            <th>OnSale</th>
+            <th>StockLevel</th>
+        </tr>
+
+        @foreach (var p in products)
+        {
+            string isOnsale = p.OnSale == true ? "Yes" : "No";
+
+            <tr>
+                <td><a href="/ViewProduct/@p.ProductID">@p.ProductID</a></td>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.CategoryID</td>
+                <td>@isOnsale</td>
+                <td>@p.StockLevel</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@code {
+    private IEnumerable<Product> products;
+
+    protected override void OnInitialized()
+    {
+        products = productService.GetAllProducts();
+    }
+}
