@@ -1,9 +1,42 @@
 ﻿@page "/"
+@using BlazorBestBuyDemo.Data
+@using BlazorBestBuyDemo.Services
+@inject IProductService productService
 
-<PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<h1>Products</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<table class="table">
+    <tr>
+        <th>ProductID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>CategoryID</th>
+        <th>OnSale</th>
+        <th>StockLevel</th>
+    </tr>
+
+    @foreach (var p in products)
+    {
+        string isOnsale = p.OnSale == true ? "Yes" : "No";
+
+        <tr>
+            <td><a href="/ViewProduct/@p.ProductID">@p.ProductID</a></td>
+            <td>@p.Name</td>
+            <td>@p.Price</td>
+            <td>@p.CategoryID</td>
+            <td>@isOnsale</td>
+            <td>@p.StockLevel</td>
+        </tr>
+    }
+</table>
+
+@code {
+    private IEnumerable<Product> products;
+
+    protected override void OnInitialized()
+    {
+        products = productService.GetAllProducts();
+    }
+}
