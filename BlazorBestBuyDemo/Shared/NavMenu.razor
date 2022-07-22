@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="">BlazorBestBuyDemo</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon">Toggler</span>
         </button>
     </div>
 </div>
@@ -15,11 +15,15 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="products" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="Products" Match="NavLinkMatch.All">
                 <span class="oi oi-plus" aria-hidden="true"></span> View All Products
             </NavLink>
         </div>
-        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="CreateProduct" Match="NavLinkMatch.All">
+                <span class="oi oi-plus" aria-hidden="true"></span> Create a Product
+            </NavLink>
+        </div>
     </nav>
 </div>
 

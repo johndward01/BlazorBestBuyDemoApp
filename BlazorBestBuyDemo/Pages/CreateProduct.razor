@@ -1,0 +1,64 @@
+﻿@page "/CreateProduct"
+@using BlazorBestBuyDemo.Data
+@using BlazorBestBuyDemo.Services
+@inject IProductService productService
+@inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
+
+<div>
+    <h1 class="display-1 text-center m-5">Create Product</h1>
+    <h4 class="display-6">Complete the form to create a new product in the database</h4>
+    <br />
+    <EditForm Model="@product" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label>
+                Name:
+                <InputText @bind-Value="product.Name" DisplayName="Product Name" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Price:
+                <InputNumber @bind-Value="product.Price" DisplayName="Product Price" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Category ID:
+                <InputNumber @bind-Value="product.CategoryID" DisplayName="Product CategoryID" />
+            </label>
+        </div>
+        <div>
+            <label>
+                OnSale:
+                <InputCheckbox @bind-Value="product.OnSale" DisplayName="Is the Product OnSale" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Stock Level:
+                <InputNumber @bind-Value="product.StockLevel" DisplayName="Product Stock Level" />
+            </label>
+        </div>
+
+        <button type="submit">Submit</button>
+    </EditForm>
+</div>
+
+@code {
+    private Product product;
+
+    protected override void OnInitialized()
+    {
+        product = productService.AssignCategory();
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Process the valid form
+        productService.InsertProduct(product);
+        NavigationManager.NavigateTo("/Home");
+    }
+}
