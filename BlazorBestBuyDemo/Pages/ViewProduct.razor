@@ -2,8 +2,7 @@
 @using BlazorBestBuyDemo.Data
 @using BlazorBestBuyDemo.Services
 @inject IProductService productService
-
-
+@inject NavigationManager NavigationManager
 
 <div>
     <h1 class="display-1 text-center m-5">@product.Name</h1>
@@ -20,9 +19,17 @@
 </div>
 
 
-@code {
+<button class="btn btn-primary" @onclick="UpdateProduct">
+    Update this Product
+</button>
 
+@code {
     [Parameter]
     public int ID { get; set; }
     public Product product => productService.ViewProduct(ID);
+
+    private void UpdateProduct()
+    {
+        NavigationManager.NavigateTo($"UpdateProduct/{@ID}");
+    }
 }

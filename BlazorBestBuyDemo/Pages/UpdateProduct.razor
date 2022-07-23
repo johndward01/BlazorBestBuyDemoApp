@@ -1,12 +1,12 @@
-﻿@page "/CreateProduct"
+﻿@page "/UpdateProduct/{id:int}"
 @using BlazorBestBuyDemo.Data
 @using BlazorBestBuyDemo.Services
 @inject IProductService productService
 @inject NavigationManager NavigationManager
 
 <div>
-    <h1 class="display-1 text-center m-5">Create Product</h1>
-    <h4 class="display-6 text-center">Complete the form to create a new product in the database</h4>
+    <h1 class="display-1 text-center m-5">Update Product</h1>
+    <h4 class="display-6 text-center">Complete the form to update this product in the database</h4>
     <br />
     <EditForm Model="@product" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
@@ -47,17 +47,19 @@
 </div>
 
 @code {
+    [Parameter]
+    public int ID { get; set; }
     private Product product;
 
     protected override void OnInitialized()
     {
-        product = productService.AssignCategory();
+        product = productService.ViewProduct(ID);
     }
 
     private void HandleValidSubmit()
     {
         // Process the valid form
-        productService.InsertProduct(product);
+        productService.UpdateProduct(product);
         NavigationManager.NavigateTo("/Home");
     }
 }

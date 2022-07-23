@@ -26,14 +26,14 @@ public class ProductService : IProductService
 
     public void UpdateProduct(Product product)
     {
-        _connection.Execute("UPDATE products SET Name = @name, Price = @price WHERE ProductID = @id",
-            new { name = product.Name, price = product.Price, id = product.ProductID });
+        _connection.Execute("UPDATE products SET Name = @name, Price = @price, CategoryID = @categoryID, OnSale = @onSale, StockLevel = @stockLevel  WHERE ProductID = @id",
+            new { name = product.Name, price = product.Price, categoryID = product.CategoryID, onSale = product.OnSale, stockLevel = product.StockLevel, id = product.ProductID });
     }
 
     public void InsertProduct(Product productToInsert)
     {
-        _connection.Execute("INSERT INTO products (NAME, PRICE, CATEGORYID) VALUES (@name, @price, @categoryID);",
-            new { name = productToInsert.Name, price = productToInsert.Price, categoryID = productToInsert.CategoryID });
+        _connection.Execute("INSERT INTO products (Name, Price, CategoryID, OnSale, StockLevel) VALUES (@name, @price, @categoryID, @onSale, @stockLevel);",
+            new { name = productToInsert.Name, price = productToInsert.Price, categoryID = productToInsert.CategoryID, onSale = productToInsert.OnSale, stockLevel = productToInsert.StockLevel });
     }
 
     public IEnumerable<Category> GetCategories()
