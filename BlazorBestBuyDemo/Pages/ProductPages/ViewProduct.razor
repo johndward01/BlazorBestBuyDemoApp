@@ -32,7 +32,12 @@
 @code {
     [Parameter]
     public int ID { get; set; }
-    public Product product => productService.ViewProduct(ID);
+    private Product product;
+
+    protected override void OnInitialized()
+    {
+        product = productService.ViewProduct(ID);
+    }
 
     private void Update()
     {
@@ -42,5 +47,6 @@
     private void Delete()
     {
         productService.DeleteProduct(product);
+        NavigationManager.NavigateTo($"GetAllProducts");
     }
 }
