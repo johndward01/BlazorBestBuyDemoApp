@@ -1,0 +1,19 @@
+﻿img {
+    margin: 50px;
+    max-width: 75%;
+    max-height: 75%;
+}
+
+span {
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #bbb;
+}
+
+.product {
+    margin: 20px;
+    
+}

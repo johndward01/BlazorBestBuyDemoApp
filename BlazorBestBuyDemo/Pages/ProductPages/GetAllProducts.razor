@@ -7,35 +7,58 @@
 <div>
     <h1 class="display-1 text-center m-5">Get All Products</h1>
 
-    <table class="table">
-        <tr>
-            <th>ProductID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>CategoryID</th>
-            <th>OnSale</th>
-            <th>StockLevel</th>
-        </tr>
+    @foreach (var p in products)
+    {
+        string isOnsale = p.OnSale == true ? "✅" : "❌";
+        int categoryID = p.CategoryID;
 
-        @foreach (var p in products)
-        {
-            string isOnsale = p.OnSale == true ? "Yes" : "No";
-
-            <tr>
-                <td><a href="/ViewProduct/@p.ProductID">@p.ProductID</a></td>
-                <td>@p.Name</td>
-                <td>@p.Price</td>
-                <td>@p.CategoryID</td>
-                <td>@isOnsale</td>
-                <td>@p.StockLevel</td>
-            </tr>
-        }
-    </table>
+        <a href="/ViewProduct/@p.ProductID">
+            <div class="row bg-dark text-white-50 m-5">
+                <div class="col-lg-4">
+                    <img src="imgs/@GetPictureByCategoryID(categoryID)" />
+                </div>
+                <div class="col-lg-8 pt-5">
+                    <h1 class="display-1">@p.Name</h1>
+                    <h1 class="display-2">$@p.Price</h1>
+                    <h1>Category ID: @p.CategoryID</h1>
+                    <h1>Product on sale: @isOnsale</h1>
+                    <h1>Stock Level: @p.StockLevel</h1>
+                </div>
+            </div>
+        </a>
+    }
 </div>
 
 
 @code {
     private IEnumerable<Product> products;
+
+    public string GetPictureByCategoryID(int categoryID)
+    {
+        switch (categoryID)
+        {
+            case 1:
+                return "Computers.jpg";
+            case 2:
+                return "Appliances.jpg";
+            case 3:
+                return "Phones.jpg";
+            case 4:
+                return "Audio.jpg";
+            case 5:
+                return "Home Theater.jpg";
+            case 6:
+                return "Printers.jpg";
+            case 7:
+                return "Music.jpg";
+            case 8:
+                return "Games.jpg";
+            case 9:
+                return "Services.jpg";
+            default:
+                return "Other.jpg";
+        }
+    }
 
     protected override void OnInitialized()
     {
