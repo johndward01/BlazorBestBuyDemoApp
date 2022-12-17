@@ -7,31 +7,49 @@
 <div>
     <h1 class="display-1 text-center m-5">Get All Products</h1>
 
-    @foreach (var p in products)
+    @foreach (var p in _products)
     {
         string isOnsale = p.OnSale == true ? "✅" : "❌";
         int categoryID = p.CategoryID;
 
-        <a href="/ViewProduct/@p.ProductID">
-            <div class="row bg-dark text-white-50 m-5">
-                <div class="col-lg-4">
-                    <img src="imgs/@GetPictureByCategoryID(categoryID)" />
-                </div>
-                <div class="col-lg-8 pt-5">
-                    <h1 class="display-1">@p.Name</h1>
-                    <h1 class="display-2">$@p.Price</h1>
-                    <h1>Category ID: @p.CategoryID</h1>
-                    <h1>Product on sale: @isOnsale</h1>
-                    <h1>Stock Level: @p.StockLevel</h1>
+
+        <div class="row bg-dark text-white-50 m-5">
+            <div class="col">
+                <a href="/ViewProduct/@p.ProductID">
+                    <div class="card bg-dark mt-2">
+                        <img class="card-img-top w-75" src="imgs/@GetPictureByCategoryID(categoryID)" />
+                        <div class="card-body">
+                            <p>Product Description (needs to be added to database)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col pt-2">
+                <h5>@p.Name</h5>
+                <h5>$@p.Price</h5>
+                <h5>Category ID: @p.CategoryID</h5>
+                <h5>On Sale: @isOnsale</h5>
+                <h5>Stock Level: @p.StockLevel</h5>
+                <div class="my-4">
+                    <p class="m-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
                 </div>
             </div>
-        </a>
+
+
+
+        </div>
+
     }
 </div>
 
 
 @code {
-    private IEnumerable<Product> products;
+    private IEnumerable<Product> _products;
 
     public string GetPictureByCategoryID(int categoryID)
     {
@@ -62,6 +80,6 @@
 
     protected override void OnInitialized()
     {
-        products = productService.GetAllProducts();
+        _products = productService.GetAllProducts();
     }
 }

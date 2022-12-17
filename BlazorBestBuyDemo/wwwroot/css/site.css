@@ -69,3 +69,24 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/*========== Scroll Bar ===========*/
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: #555;
+}
+
+::-webkit-scrollbar-corner {
+    border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(128, 128, 128);
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #310082;
+    }

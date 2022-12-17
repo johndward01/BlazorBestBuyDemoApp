@@ -4,21 +4,7 @@
 @inject IProductService productService
 @inject NavigationManager NavigationManager
 
-<style>
-    input[type=checkbox] {
-        /* Double-sized Checkboxes */
-        -ms-transform: scale(2); /* IE */
-        -moz-transform: scale(2); /* FF */
-        -webkit-transform: scale(2); /* Safari and Chrome */
-        -o-transform: scale(2); /* Opera */
-        transform: scale(2);
-        padding: 10px;
-    }
 
-    p {
-        font-size: 1.4rem;
-    }
-</style>
 
 <div class="container p-5 my-5 bg-dark text-white">
     <h1>Create Product</h1>
@@ -30,63 +16,33 @@
     <EditForm Model="@product" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
-        <div class="display-6">
-            <label>
-                <div class="row my-2">
-                    <div class="col-4">
-                        <span>Name:</span>
-                    </div>
-                    <div class="col-8">
-                        <InputText @bind-Value="product.Name" DisplayName="Product Name" />
-                    </div>
-                </div>
-            </label>
+        <div class="m-2 fs-2">
+            <label for="Name">Name:</label>
+            <InputText @bind-Value="product.Name" DisplayName="Product Name" />
         </div>
-        <div class="display-6">
-            <label>
-                <div class="row my-2">
-                    <div class="col-4">
-                        <span>Price:</span>
-                    </div>
-                    <div class="col-8">
-                        <InputNumber @bind-Value="product.Price" DisplayName="Product Price" />
-                    </div>
-                </div>
-            </label>
+        <div class="m-2 fs-2">
+            <label for="Name">Price:</label>
+            <InputNumber @bind-Value="product.Price" DisplayName="Product Price" />
         </div>
-        <div class="display-6">
-            <label>
-                <div class="row my-2">
-                    <div class="col-4">
-                        <span>Category ID:</span>
-                    </div>
-                    <div class="col-8">
-                        <InputNumber @bind-Value="product.CategoryID" DisplayName="Product CategoryID" />
-                    </div>
-                </div>
-            </label>
+        <div class="m-2 fs-2">
+            <label for="Name">Category ID:</label>
+            <InputNumber @bind-Value="product.CategoryID" DisplayName="Category ID" />
         </div>
-        <div class="display-6">
-            <label>
-                <div class="row my-2">
-                    <div class="col-4">
-                        <span>Stock Level:</span>
-                    </div>
-                    <div class="col-8">
-                        <InputNumber @bind-Value="product.StockLevel" DisplayName="Product Stock Level" />
-                    </div>
-                </div>
-            </label>
+        <div class="m-2 fs-2">
+            <label for="Name">Stock Level:</label>
+            <InputNumber @bind-Value="product.StockLevel" DisplayName="Stock Level" />
         </div>
-        <div class="display-6">
-            <label>
-                <span>OnSale:</span>
-                <InputCheckbox @bind-Value="product.OnSale" DisplayName="Is the Product OnSale" />
-            </label>
-            <div class="d-grid my-4">
-                <button class="btn btn-outline-success btn-lg btn-block" type="submit">Submit</button>
-            </div>
-        </div>
+        <div class="m-2 fs-2">
+            <InputCheckbox @bind-Value="product.OnSale" DisplayName="OnSale" /><span>&nbsp;</span>
+            @if (product.OnSale)
+            {
+                <label class="btn btn-outline-success">On Sale</label>
+            }
+            else
+            {
+                <label class="btn btn-outline-danger">Not on Sale</label>
+            }
+        </div>        
     </EditForm>
 </div>
 

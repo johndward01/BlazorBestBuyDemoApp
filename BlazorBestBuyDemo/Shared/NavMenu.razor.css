@@ -50,7 +50,7 @@
     color: white;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 601px) {
     .navbar-toggler {
         display: none;
     }
