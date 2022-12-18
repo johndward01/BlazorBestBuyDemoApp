@@ -12,9 +12,8 @@
         string isOnsale = p.OnSale == true ? "✅" : "❌";
         int categoryID = p.CategoryID;
 
-
         <div class="row bg-dark text-white-50 m-5">
-            <div class="col">
+            <div class="col-md">
                 <a href="/ViewProduct/@p.ProductID">
                     <div class="card bg-dark mt-2">
                         <img class="card-img-top w-75" src="imgs/@GetPictureByCategoryID(categoryID)" />
@@ -24,9 +23,8 @@
                     </div>
                 </a>
             </div>
-            <div class="col pt-2">
-                <h5>@p.Name</h5>
-                <h5>$@p.Price</h5>
+            <div class="col-md pt-2">
+                <h5>@p.Name: $@p.Price</h5>
                 <h5>Category ID: @p.CategoryID</h5>
                 <h5>On Sale: @isOnsale</h5>
                 <h5>Stock Level: @p.StockLevel</h5>
@@ -34,16 +32,10 @@
                     <p class="m-2">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                 </div>
             </div>
-
-
-
         </div>
-
     }
 </div>
 
