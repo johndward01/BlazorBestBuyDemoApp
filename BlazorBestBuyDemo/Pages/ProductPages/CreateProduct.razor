@@ -4,54 +4,61 @@
 @inject IProductService productService
 @inject NavigationManager NavigationManager
 
-
-
 <div class="container p-5 my-5 bg-dark text-white">
     <h1>Create Product</h1>
     <p>Complete the form to create a new product in the database</p>
 </div>
 
-
 <div class="container p-5 my-5 bg-dark text-white">
     <EditForm Model="@product" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
-        <div class="m-2 fs-2">
-            <label for="Name">Name:</label>
-            <InputText @bind-Value="product.Name" DisplayName="Product Name" />
+        <div class="row">
+            <div class="col">
+                <div class="m-2 fs-2">
+                    <label for="Name">Name:</label>
+                    <InputText @bind-Value="product.Name" DisplayName="Product Name" />
+                </div>
+            </div>
         </div>
-        <div class="m-2 fs-2">
-            <label for="Name">Price:</label>
-            <InputNumber @bind-Value="product.Price" DisplayName="Product Price" />
+        <div class="col">
+            <div class="m-2 fs-2">
+                <label for="Name">Price:</label>
+                <InputNumber @bind-Value="product.Price" DisplayName="Product Price" />
+            </div>
         </div>
-        <div class="m-2 fs-2">
-            <label for="Name">Category ID:</label>
-            <InputNumber @bind-Value="product.CategoryID" DisplayName="Category ID" />
+        <div class="col">
+            <div class="m-2 fs-2">
+                <label for="Name">Category ID:</label>
+                <InputNumber @bind-Value="product.CategoryID" DisplayName="Category ID" />
+            </div>
         </div>
-        <div class="m-2 fs-2">
-            <label for="Name">Stock Level:</label>
-            <InputNumber @bind-Value="product.StockLevel" DisplayName="Stock Level" />
+        <div class="col">
+            <div class="m-2 fs-2">
+                <label for="Name">Stock Level:</label>
+                <InputNumber @bind-Value="product.StockLevel" DisplayName="Stock Level" />
+            </div>
         </div>
-        <div class="m-2 fs-2">
-            <InputCheckbox @bind-Value="product.OnSale" DisplayName="OnSale" /><span>&nbsp;</span>
-            @if (product.OnSale)
-            {
-                <label class="btn btn-outline-success">On Sale</label>
-            }
-            else
-            {
-                <label class="btn btn-outline-danger">Not on Sale</label>
-            }
-        </div>        
+        <div class="col">
+            <div class="m-2 fs-2">
+                <InputCheckbox @bind-Value="product.OnSale" DisplayName="OnSale" /><span>&nbsp;</span>
+                @if (product.OnSale)
+                {
+                    <label class="btn btn-outline-success">On Sale</label>
+                }
+                else
+                {
+                    <label class="btn btn-outline-danger">Not on Sale</label>
+                }
+            </div>
+        </div>
+        <div class="col">
+            <div class="m-2 fs-2">
+                <input type="submit" class="btn btn-primary m" value="Create" />
+            </div>
+        </div>
     </EditForm>
 </div>
-
-
-
-@*<div class="row">
-    <img src="imgs/centre-for-ageing-better-ZlOlRnWk8zU-unsplash.jpg" />
-</div>*@
-
 
 @code {
     private Product product;
