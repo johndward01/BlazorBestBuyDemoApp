@@ -39,14 +39,12 @@
 
 <div class="row bg-dark text-white-50 m-5">
     <div class="col">
-        <a href="/ViewProduct/@product.ProductID">
-            <div class="card bg-dark mt-2">
-                <img class="card-img-top w-75" src="imgs/@GetPictureByCategoryID(product.CategoryID)" />
-                <div class="card-body">
-                    <p>Product Description (needs to be added to database)</p>
-                </div>
+        <div class="card bg-dark mt-2">
+            <img class="card-img-top w-75" src="imgs/@GetPictureByCategoryID(product.CategoryID)" />
+            <div class="card-body">
+                <p>Product Description (needs to be added to database)</p>
             </div>
-        </a>
+        </div>
         <button class="btn btn-primary m-2" @onclick="Update">
             Update this Product
         </button>
@@ -68,13 +66,13 @@
                 ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
         </div>
-        
 
-        
+
+
     </div>
 </div>
 
-    
+
 
 @code {
     [Parameter]

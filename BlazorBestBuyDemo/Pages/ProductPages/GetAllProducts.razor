@@ -3,48 +3,59 @@
 @using BlazorBestBuyDemo.Services
 @inject IProductService productService
 
-
 <div>
     <h1 class="display-1 text-center m-5">Get All Products</h1>
 
-    @foreach (var p in _products)
+    @for (int i = 0; i < _products.Count(); i++)
     {
-        string isOnsale = p.OnSale == true ? "✅" : "❌";
-        int categoryID = p.CategoryID;
+        int productID = _products[i].ProductID;
+        string name = _products[i].Name;
+        double price = _products[i].Price;
+        int categoryID = _products[i].CategoryID;
+        string isOnsale = _products[i].OnSale == true ? "✅" : "❌";
+        int stockLevel = _products[i].StockLevel;
 
-        <div class="row bg-dark text-white-50 m-5">
-            <div class="col">
-                <a href="/ViewProduct/@p.ProductID">
-                    <div class="card bg-dark mt-2">
-                        <img class="card-img-top w-75" src="imgs/@GetPictureByCategoryID(categoryID)" />
-                        <div class="card-body">
-                            <p>Product Description (needs to be added to database)</p>
+        <div class="row">
+            <div class="col-md m-2">
+                <div class="row bg-dark text-white-50 m-5">
+                    <div class="col">
+                        <a href="/ViewProduct/@productID">
+                            <div class="card bg-dark mt-2">
+                                <div class="card-body">
+                                <img class="card-img-top w-75" src="imgs/@GetPictureByCategoryID(categoryID)" />
+                                    <p class="mt-2">
+                                        Product Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                        sed do eiusmod tempor incididunt
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col pt-2">
+                        <h5>@name</h5>
+                        <h5>$@price</h5>
+                        <h5>Category ID: @categoryID</h5>
+                        <h5>On Sale: @isOnsale</h5>
+                        <h5>Stock Level: @stockLevel</h5>
+                        <div class="my-4">
+                            <p class="m-2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.                                
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col pt-2">
-                <h5>@p.Name</h5>
-                <h5>$@p.Price</h5>
-                <h5>Category ID: @p.CategoryID</h5>
-                <h5>On Sale: @isOnsale</h5>
-                <h5>Stock Level: @p.StockLevel</h5>
-                <div class="my-4">
-                    <p class="m-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
                 </div>
             </div>
         </div>
+
+
+        
     }
 </div>
 
 
 @code {
-    private IEnumerable<Product> _products;
+    private List<Product> _products = new List<Product>();
 
     public string GetPictureByCategoryID(int categoryID)
     {
@@ -75,6 +86,6 @@
 
     protected override void OnInitialized()
     {
-        _products = productService.GetAllProducts();
+        _products = productService.GetAllProducts().ToList();
     }
 }
